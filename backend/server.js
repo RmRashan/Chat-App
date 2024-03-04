@@ -20,7 +20,9 @@ app.use("/api/message", messageRoute);
 app.use("/api/users", usersRoute);
 
 
-app.use(express.static(path.join(dirname,"/frontend/dist")))
+app.use(express.static(path.join(dirname, "/frontend/dist")))
+
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(dirname, "frontend", "dist", "index.html"));

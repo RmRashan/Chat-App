@@ -22,7 +22,7 @@ export const SocketContextProvider = ({ children }) => {
         if (authuser) {
         
 
-            const socket = io("http://localhost:9100", {
+            const socket = io("https://chat-app-zfhs.onrender.com/", {
                 query: {
                     userId: authuser._id,
                 },
