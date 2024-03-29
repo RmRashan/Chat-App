@@ -11,10 +11,10 @@ const dirname = path.resolve();
 
 
 require("dotenv").config();
-const port = process.env.PORT || 9000;
+// const port = process.env.PORT || 9000;
+const port =  9000;
 app.use(express.json())
 app.use(cookieParser())
-
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 app.use("/api/users", usersRoute);
@@ -23,10 +23,10 @@ app.use("/api/users", usersRoute);
 app.use(express.static(path.join(dirname, "/frontend/dist")))
 
 
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(dirname, "frontend", "dist", "index.html"));
-})
+     
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(dirname, "frontend", "dist", "index.html"));
+// })
 
 
 

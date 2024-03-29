@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 
 const getUsersSideBar = async  (req, res) => {
 
-
+ 
     try {
 
         const loggedInUserId = req.user._id;

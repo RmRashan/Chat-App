@@ -4,11 +4,12 @@ const genartetken = require('../utils/genarateToken');
 
 
 const login = async (req, res) => {
+    // console.log(req) 
 
     try {
 
         const { username, password } = await req.body;
-        
+
         const user = await User.findOne({ username })
         const isPasswordCorrect = await bcryptjs.compare(password, user?.password || "");
 
@@ -27,7 +28,7 @@ const login = async (req, res) => {
             profilePic: user.profilePic
         })
 
-        
+
 
 
 

@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import useConversation from "../zustand/useConversation";
 import { toast } from 'react-hot-toast';
+import useAuthContexts from "../context/AuthContext";
 
 const UseGetMessage = () => {
     const [loading, setLoading] = useState()
     const { messages, setMessages, selectedCoversation } = useConversation()
-
+    const { setAuthUser } = useAuthContexts();
     useEffect(() => {
 
         const getMessage = async (message) => {
@@ -16,11 +17,16 @@ const UseGetMessage = () => {
 
                 const res = await fetch(`/api/message/${selectedCoversation._id}`)
                 const data = await res.json()
-                if (data.error) throw new Error(data.error)
+              
 
+                if (data.error == "unauthorized - Ivaild Provided" || data.error == "unauthorized - No Token Provided") {
+                    new Error(data.error)
+                    return setAuthUser(null);
+                } else {
+                    setMessages(data)
 
-
-                setMessages(data)
+                }
+                
 
             } catch (error) {
 

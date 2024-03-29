@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect, useContext } from "react";
-import  useAuthContexts  from "./AuthContext";
+import useAuthContexts from "./AuthContext";
 import io from "socket.io-client";
 
 
@@ -17,12 +17,12 @@ export const SocketContextProvider = ({ children }) => {
     const { authuser } = useAuthContexts();
 
     useEffect(() => {
-       
+
 
         if (authuser) {
-        
 
-            const socket = io("https://chat-app-zfhs.onrender.com/", {
+
+            const socket = io("http://localhost:5173/", {
                 query: {
                     userId: authuser._id,
                 },
@@ -37,7 +37,7 @@ export const SocketContextProvider = ({ children }) => {
 
             return () => socket.close();
         } else {
-         
+
             if (socket) {
                 socket.close();
                 setSocket(null);
